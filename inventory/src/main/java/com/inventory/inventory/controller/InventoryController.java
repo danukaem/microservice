@@ -17,7 +17,7 @@ public class InventoryController {
 
     @GetMapping("/getInventory")
     public String getInventory() {
-        String block = webClientBuilder.build().get().uri("http://product/product/getProducts")
+        String block = webClientBuilder.build().get().uri("http://api-gateway/product/getProducts")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
@@ -33,7 +33,7 @@ public class InventoryController {
 
         Order block1 = webClientBuilder.build()
                 .post()
-                .uri("http://order/order/placeOrder")
+                .uri("http://api-gateway/order/placeOrder")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(product1)
                 .retrieve()
@@ -43,5 +43,6 @@ public class InventoryController {
 
         System.out.println("block1 call order response: " + block1);
         return "Inventory : " + block;
+//        return "Inventory :*********** " ;
     }
 }
